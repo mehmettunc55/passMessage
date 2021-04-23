@@ -1,28 +1,32 @@
+const form = document.querySelector('#message-form');
+const message = document.querySelector('#message');
+const feedBack = document.querySelector('.feedback');
+const messageOutput = document.querySelector('.message-content');
 
-(function() {
-//Select the input element
-const form = document.querySelector('#message-form')
-//Set up Submit Button
-form.addEventListener('submit', function(e){
-    // prevent the form's default submission action
-    e.preventDefault()
-    //Get user's input from from
-    const message = document.querySelector('#message')
-    const feedback = document.querySelector('.feedback')
-    const messageContent = document.querySelector('.message-content')
 
-    if (message.value === ''){
-        feedback.classList.add('show')
+form.addEventListener('submit', function(textInfo){
+    textInfo.preventDefault();
+    
+    if(message.value ===''){
+        feedBack.classList.add('show');
+        messageOutput.textContent = 'Not Delivered, Try Again'
+                            
         setTimeout(function(){
-        feedback.classList.remove('show')
-        }, 2000)
+            feedBack.classList.remove('show') 
+
+        }, 2500)
+        
     } else {
-        //Change message content and clear the message input
-        messageContent.textContent = message.value
-        message.value = ''
+        messageOutput.textContent = message.value
+   
+        setTimeout(function(){
+                     
+                      messageOutput.textContent = 'Message Delivered, Come Again'
+                      message.value = message.textContent
+
+            }, 2500)
     }
 })
-})()
 
 
 
